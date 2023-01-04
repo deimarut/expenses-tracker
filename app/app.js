@@ -18,12 +18,20 @@ const mysqlConfig = {
 const connection = mysql.createConnection(mysqlConfig);
 
 //ENDPOINTS
-app.get('/expenses', (req, res) => {
-    connection.execute('SELECT * FROM expenses', (err, expenses) => {
+// app.get('/expenses/:id', (req, res) => {
+//   const { id } = req.params;
+//   connection.execute('SELECT * FROM expenses WHERE userId=?', [userId], (err, expenses) => {
+//       res.send(expenses);
+//     });
+//   });
+
+  app.get('/expenses', (req, res) => {
+    const {userId} = req.query;
+    connection.execute('SELECT * FROM expenses WHERE userId=?', [userId], (err, expenses) => {
       res.send(expenses);
     });
   });
 
-const PORT = 3000;
+const PORT = 8080;
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
