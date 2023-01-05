@@ -10,6 +10,7 @@ const ExpensesList = styled.ul`
 `;
 
 const ExpensesListItem = styled.li`
+    align-items: center ;
     box-shadow: 0 5px 7px -1px rgb(51 51 51 / 23%);
     border-radius: 10px ;
     display: flex;
@@ -22,21 +23,15 @@ const ExpenseAmount = styled.span`
     font-size: 34px;
     color: #35d8ac;
     font-weight: 700;
-    display: flex;
-    align-items: center;
 `;
 
 const ExpenseType = styled.span`
     color: #979cb0;
     font-size: 20px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-    flex-grow: 1;
-    width: 50px;
 `;
 
 export const Expenses = () => {
