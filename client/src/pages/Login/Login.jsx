@@ -1,4 +1,30 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Input } from "../../components/Input/Input";
+import { Button } from "../../components/Button/Button";
+import styled from "styled-components";
+
+const LoginContainer = styled.div`
+    display: flex;
+    background-color: lightgrey;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+`;
+
+const FormStyled = styled.form`
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    padding: 15px;
+`;
+
+const LinkStyled = styled(Link)`
+    align-self: center;
+`;
 
 export const Login = ({ onSuccess}) => {
     const [name, setName] = useState('');
@@ -26,19 +52,23 @@ export const Login = ({ onSuccess}) => {
     }
 
     return (
-        <form onSubmit={handleLogin}>
-            <input 
-                placeholder="Name" 
-                onChange={(e) => setName(e.target.value)} 
-                value={name}
-            />
-            <input 
-                placeholder="Password" 
-                type="password"
-                onChange={(e) => setPassword(e.target.value)} 
-                value={password}
-            /> 
-            <button>Login</button>
-        </form>
-    );
+        <LoginContainer >
+            <FormStyled onSubmit={handleLogin}>
+                <h1>Expenses tracker</h1>
+                <Input 
+                    placeholder="Name" 
+                    onChange={(e) => setName(e.target.value)} 
+                    value={name}
+                />
+                <Input 
+                    placeholder="Password" 
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)} 
+                    value={password}
+                /> 
+                <Button>Login</Button>
+                <LinkStyled to="/register">Register</LinkStyled>
+            </FormStyled>
+        </LoginContainer>
+    )
 }

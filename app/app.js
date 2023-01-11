@@ -54,16 +54,14 @@ app.get('/expenses', (req, res) => {
 
 app.post('/register', (req, res) => {
   const { name, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 12); 
-  bcrypt.compareSync();
+  const hashedPassword = bcrypt.hashSync(password, 12);
 
   connection.execute(
     'INSERT INTO users (name, password) VALUES (?, ?)',
     [name, hashedPassword],
         (err, result) => {
-          console.log(err);
-          res.sendStatus(200);
-        }
+            res.send(result);
+          }
       )
   });
 
