@@ -2,28 +2,27 @@ import { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import { LOGGED_IN_USER } from "../../constants/constants"; 
+import { LOGGED_IN_USER } from "../../constants/constants";
 
 const ExpensesList = styled.ul`
-    display: flex ;
-    flex-direction: column ;
+    display: flex;
+    flex-direction: column;
     gap: 8px;
     list-style: none;
 `;
 
 const ExpensesListItem = styled.li`
-    align-items: center ;
+    align-items: center;
+    border-radius: 10px;
     box-shadow: 0 5px 7px -1px rgb(51 51 51 / 23%);
-    border-radius: 10px ;
     display: flex;
     justify-content: space-between;
-    color: darkblue;
-    padding: 10px 30px 10px 10px ;
+    padding: 10px 30px;
 `;
 
 const ExpenseAmount = styled.span`
-    font-size: 34px;
     color: #35d8ac;
+    font-size: 34px;
     font-weight: 700;
 `;
 
@@ -64,7 +63,7 @@ export const Expenses = () => {
             },
             body: JSON.stringify({
                 type, 
-                amount, 
+                amount,
                 userId: 1
             })
         })
@@ -73,10 +72,10 @@ export const Expenses = () => {
             setExpenses(data);
             setType('');
             setAmount('');
-        })
+        });
     }
-    
-const totalSum = expenses.reduce((totalSum, expense) => totalSum += parseInt(expense.amount), 0);
+
+    const totalSum = expenses.reduce((totalSum, expense) => totalSum += parseInt(expense.amount), 0);
 
     return (
         <ExpensesList>
@@ -84,10 +83,9 @@ const totalSum = expenses.reduce((totalSum, expense) => totalSum += parseInt(exp
                 <Input 
                     placeholder="Type" 
                     required 
-                    onChange={(e) => setType(e.target.value)} 
+                    onChange={(e) => setType(e.target.value)}
                     value={type}
                 />
-
                 <Input 
                     placeholder="Amount" 
                     type="number" 
@@ -97,7 +95,7 @@ const totalSum = expenses.reduce((totalSum, expense) => totalSum += parseInt(exp
                 />
                 <Button>Add</Button>
             </form>
-            <h2>Total sum spend: € {totalSum}</h2>
+            <h2>Total spent: €{totalSum}</h2>
             {expenses.map((exp) => (
                 <ExpensesListItem key={exp.id}>
                     <ExpenseType>{exp.type}</ExpenseType>
