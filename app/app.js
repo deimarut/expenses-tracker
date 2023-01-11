@@ -73,7 +73,8 @@ app.post('/login', (req, res) => {
     [name],
     (err, result) => {
       if (result.length === 0) {
-        res.send('Incorrect username or password');
+        res.status(401);
+        res.send({ message: 'Incorrect username or password' });
       } else {
           console.log(result);
           const passwordHash = result[0].password
@@ -81,6 +82,7 @@ app.post('/login', (req, res) => {
           if (isPasswordCorrect) {
             res.send(result[0]);
           } else {
+            res.status(401);
             res.send('Incorrect username or password');
           }
         }
